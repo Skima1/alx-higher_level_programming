@@ -1,35 +1,14 @@
 #!/usr/bin/python3
+"""Search and update"""
 
-"""
-
-Contains the "append after" function
-
-"""
 
 def append_after(filename="", search_string="", new_string=""):
-
-    """appends "new_string" after a line containing
-
-    "search_string" in "filename" """
-
-    with open(filename, 'r', encoding='utf-8') as f:
-
-        line_list = []
-
-        while True:
-
-            line = f.readline()
-
-            if line == "":
-
-                break
-
-            line_list.append(line)
-
+    """inserts a line of text to a file, after each line with a spc. string"""
+    text = ""
+    with open(filename, "r") as file:
+        for line in file:
+            text += line
             if search_string in line:
-
-                line_list.append(new_string)
-
-    with open(filename, 'w', encoding='utf-8') as f:
-
-        f.writelines(line_list) 
+                text += new_string
+    with open(filename, "w") as file:
+        file.write(text)
